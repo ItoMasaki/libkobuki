@@ -39,7 +39,7 @@ static int myGetch();
 int main(int argc, char* argv[])
 {
   std::cout << "Starting Kobuki Demo" << std::endl;
-  std::string arg = "/dev/ttyUSB0";
+  std::string arg = "/dev/ttyUSB1";
   if(argc > 1) {
     arg = argv[1];
   }
