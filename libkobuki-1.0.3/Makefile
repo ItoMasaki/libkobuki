@@ -4,9 +4,12 @@
 #                                                                                 #
 ###################################################################################
 
+# Now macOS can't work!
+
 # This is important directories to compile.
 # Don't Rewrite!
-current       = `pwd`
+current	      = `pwd`
+
 object        = $(current)/lib
 source        = $(current)/src
 include       = $(current)/include
@@ -19,9 +22,9 @@ example       = $(current)/example/demo.cpp
 CXX = g++
 
 
-CXX_OBJECT_FLAGS =  -c -I$(include)
+CXX_OBJECT_FLAGS =  -c -fPIC -pthread -I$(include)
 
-CXX_DEMO_FLAGS   =  -I$(include) -L$(object) -pthread
+CXX_DEMO_FLAGS   =  -pthread -I$(include)
 
 
 .PHONY:
@@ -36,7 +39,7 @@ test:
 clear:
 	rm -rf $(object)/*
 
-create_object:
+lib:
 	$(CXX) $(CXX_OBJECT_FLAGS) src/DockingController.cpp -o$(object)/DockingController.o
 	$(CXX) $(CXX_OBJECT_FLAGS) src/KobukiBase.cpp        -o$(object)/KobukiBase.o
 	$(CXX) $(CXX_OBJECT_FLAGS) src/kobukicwrapper.cpp    -o$(object)/kobukicwrapper.o
@@ -47,5 +50,6 @@ create_object:
 	$(CXX) $(CXX_OBJECT_FLAGS) src/Translator.cpp        -o$(object)/translator.o
 	$(CXX) $(CXX_OBJECT_FLAGS) src/Transport.cpp         -o$(object)/Transport.o
 
-run:
+compile: 
 	$(CXX) $(CXX_DEMO_FLAGS) lib/DockingController.o lib/KobukiBase.o lib/kobukicwrapper.o lib/Kobuki_impl.o lib/libkobuki.o lib/SerialPort.o lib/Thread.o lib/translator.o lib/Transport.o $(example)
+

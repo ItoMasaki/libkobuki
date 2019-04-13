@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/select.h>
 #ifdef WIN32
 #include <conio.h>
 #else
